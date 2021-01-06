@@ -10,7 +10,7 @@ with open("README.md", "r", encoding='UTF-8') as fh:
 setup(
     name="eloguru",
     version="0.0.1",
-    keywords=("email", "log",'loguru', '日志邮件'),
+    keywords=("email", "log", 'loguru', '日志邮件'),
     description="带发邮件的loguru包装，支持全部loguru功能和邮件发送功能",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -21,5 +21,5 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     platforms="any",
-    install_requires=['loguru', 'pydantic']
+    install_requires=['loguru', 'pydantic', 'smtplib', 'email']
 )
