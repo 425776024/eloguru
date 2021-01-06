@@ -10,39 +10,7 @@ from .mail_send import __MailSend as mail_send
 
 
 class ELogger(Logger):
-    email = False
     mail_config = _mail_config
-
-    def add(
-            self,
-            sink,
-            *,
-            level=_defaults.LOGURU_LEVEL,
-            format=_defaults.LOGURU_FORMAT,
-            filter=_defaults.LOGURU_FILTER,
-            colorize=_defaults.LOGURU_COLORIZE,
-            serialize=_defaults.LOGURU_SERIALIZE,
-            backtrace=_defaults.LOGURU_BACKTRACE,
-            diagnose=_defaults.LOGURU_DIAGNOSE,
-            enqueue=_defaults.LOGURU_ENQUEUE,
-            catch=_defaults.LOGURU_CATCH,
-            **kwargs
-    ):
-        if 'email' in kwargs:
-            self.email = kwargs['email']
-            mail_send.config = self.mail_config
-            del kwargs['email']
-        super(ELogger, self).add(sink=sink,
-                                 level=_defaults.LOGURU_LEVEL,
-                                 format=_defaults.LOGURU_FORMAT,
-                                 filter=_defaults.LOGURU_FILTER,
-                                 colorize=_defaults.LOGURU_COLORIZE,
-                                 serialize=_defaults.LOGURU_SERIALIZE,
-                                 backtrace=_defaults.LOGURU_BACKTRACE,
-                                 diagnose=_defaults.LOGURU_DIAGNOSE,
-                                 enqueue=_defaults.LOGURU_ENQUEUE,
-                                 catch=_defaults.LOGURU_CATCH,
-                                 **kwargs)
 
     def _log(self, level_id, static_level_no, from_decorator, options, message, args, kwargs):
         core = self._core
@@ -164,8 +132,8 @@ class ELogger(Logger):
             handler.emit(log_record, level_id, from_decorator, raw, colored_message)
         return log_record
 
-    def __call_email(self, log_record):
-        if log_record and self.email:
+    def __call_email(self, log_record, kwargs):
+        if 'email' in kwargs and kwargs['email'] and log_record:
             mail_send.config = self.mail_config
             log_str = ''
             split = ' | '
@@ -184,39 +152,39 @@ class ELogger(Logger):
 
     def error(__self, __message, *args, **kwargs):
         log_record = __self._log("ERROR", None, False, __self._options, __message, args, kwargs)
-        __self.__call_email(log_record)
+        __self.__call_email(log_record, kwargs)
 
     def debug(__self, __message, *args, **kwargs):
         log_record = __self._log("DEBUG", None, False, __self._options, __message, args, kwargs)
-        __self.__call_email(log_record)
+        __self.__call_email(log_record, kwargs)
 
     def trace(__self, __message, *args, **kwargs):
         r"""Log ``message.format(*args, **kwargs)`` with severity ``'TRACE'``."""
         log_record = __self._log("TRACE", None, False, __self._options, __message, args, kwargs)
-        __self.__call_email(log_record)
+        __self.__call_email(log_record, kwargs)
 
     def info(__self, __message, *args, **kwargs):
         r"""Log ``message.format(*args, **kwargs)`` with severity ``'INFO'``."""
         log_record = __self._log("INFO", None, False, __self._options, __message, args, kwargs)
-        __self.__call_email(log_record)
+        __self.__call_email(log_record, kwargs)
 
     def success(__self, __message, *args, **kwargs):
         r"""Log ``message.format(*args, **kwargs)`` with severity ``'SUCCESS'``."""
         log_record = __self._log("SUCCESS", None, False, __self._options, __message, args, kwargs)
-        __self.__call_email(log_record)
+        __self.__call_email(log_record, kwargs)
 
     def warning(__self, __message, *args, **kwargs):
         r"""Log ``message.format(*args, **kwargs)`` with severity ``'WARNING'``."""
         log_record = __self._log("WARNING", None, False, __self._options, __message, args, kwargs)
-        __self.__call_email(log_record)
+        __self.__call_email(log_record, kwargs)
 
     def critical(__self, __message, *args, **kwargs):
         r"""Log ``message.format(*args, **kwargs)`` with severity ``'CRITICAL'``."""
         log_record = __self._log("CRITICAL", None, False, __self._options, __message, args, kwargs)
-        __self.__call_email(log_record)
+        __self.__call_email(log_record, kwargs)
 
     def exception(__self, __message, *args, **kwargs):
         r"""Convenience method for logging an ``'ERROR'`` with exception information."""
         options = (True,) + __self._options[1:]
         log_record = __self._log("ERROR", None, False, options, __message, args, kwargs)
-        __self.__call_email(log_record)
+        __self.__call_email(log_record, kwargs)
