@@ -7,13 +7,13 @@
 - clone source
 
 ```shell
-git clone https://github.com/425776024/eloger.git
+git clone https://github.com/425776024/eloguru.git
 ```
 
 - pip
 
 ```shell
-pip install eloger
+pip install eloguru
 ```
 
 ## des
@@ -36,28 +36,28 @@ pip install eloger
 ## use
 
 ```python
-from eloger import elogger
+from eloguru import eloguru
 
-elogger.mail_config.sender_email = "Your email"
-elogger.mail_config.sender_email_passwd = "Your email Authorization code"
-elogger.mail_config.sender_email_mailserver = "Your email server, like: smtp.163.com"
-elogger.mail_config.sender_email_mailserver_port = "Your email server's port , like : 25"
-elogger.mail_config.title = "Your email message title , like : this is a log message title"
-elogger.mail_config.body = "Your email message content template , like : <br/>#msg<br/> (#msg Will be replaced by log message)"
-elogger.mail_config.receive_emails = [
-    "Your email send to Email account 1",
-    "Your email send to Email account 2",
+eloguru.mail_config.sender_email = "Your email"
+eloguru.mail_config.sender_email_passwd = "Your email Authorization code"
+eloguru.mail_config.sender_email_mailserver = "Your email server, like: smtp.163.com"
+eloguru.mail_config.sender_email_mailserver_port = "Your email server's port , like : 25"
+eloguru.mail_config.title = "Your email message title , like : this is a log message title"
+eloguru.mail_config.body = "Your email message content template , like : <br/>#msg<br/> (#msg Will be replaced by log message)"
+eloguru.mail_config.receive_emails = [
+  "Your email send to Email account 1",
+  "Your email send to Email account 2",
 ]
 
 # All operations are the same as loguru
-elogger.add('a.log', rotation='50 MB')
-elogger.add('a.log')
-elogger.error('error', email=True)
-elogger.debug('debug')
-elogger.info('info')
-elogger.success('success', email=True)
+eloguru.add('a.log', rotation='50 MB')
+eloguru.add('a.log')
+eloguru.error('error', email=True)
+eloguru.debug('debug')
+eloguru.info('info')
+eloguru.success('success', email=True)
 
-# then all the above logs will be sent to the mailbox:'elogger.mail_config.receive_emails'
+# then all the above logs will be sent to the mailbox:'eloguru.mail_config.receive_emails'
 ```
 
 ![](email.jpeg)

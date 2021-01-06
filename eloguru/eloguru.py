@@ -4,12 +4,11 @@
 # @File    : logers.py
 import sys
 from loguru._logger import *
-from loguru import _defaults
 from .mail_config import mail_config as _mail_config
 from .mail_send import __MailSend as mail_send
 
 
-class ELogger(Logger):
+class ELoguru(Logger):
     mail_config = _mail_config
 
     def _log(self, level_id, static_level_no, from_decorator, options, message, args, kwargs):

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/12/4 下午4:09
 # @File    : logers.py
-from eloger import elogger
+from eloguru import eloguru
 
 '''
 {
@@ -19,18 +19,18 @@ from eloger import elogger
 '''
 
 if __name__ == '__main__':
-    elogger.mail_config.sender_email = "xx@163.com"
-    elogger.mail_config.sender_email_passwd = "xx"
-    elogger.mail_config.sender_email_mailserver = "smtp.163.com"
-    elogger.mail_config.sender_email_mailserver_port = "25"
-    elogger.mail_config.title = "a log"
-    elogger.mail_config.body = "LOG : <br/>#msg<br/>"
-    elogger.mail_config.receive_emails = [
+    eloguru.mail_config.sender_email = "xx@163.com"
+    eloguru.mail_config.sender_email_passwd = "xx"
+    eloguru.mail_config.sender_email_mailserver = "smtp.163.com"
+    eloguru.mail_config.sender_email_mailserver_port = "25"
+    eloguru.mail_config.title = "a log"
+    eloguru.mail_config.body = "LOG : <br/>#msg<br/>"
+    eloguru.mail_config.receive_emails = [
         "xx@qq.com",
     ]
 
-    elogger.add('a.log')
-    elogger.error('error', email=True)
-    elogger.debug('debug')
-    elogger.info('info')
-    elogger.success('success', email=True)
+    eloguru.add('a.log')
+    eloguru.error('error', email=True)
+    eloguru.debug('debug')
+    eloguru.info('info')
+    eloguru.success('success', email=True)
