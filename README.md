@@ -59,3 +59,5 @@ elogger.success('success', email=True)
 
 # then all the above logs will be sent to the mailbox:'elogger.mail_config.receive_emails'
 ```
+
+![](email.jpeg)

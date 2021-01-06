@@ -9,7 +9,7 @@ with open("README.md", "r", encoding='UTF-8') as fh:
 
 setup(
     name="eloger",
-    version="0.0.2",
+    version="0.0.3",
     keywords=("email", "log", '日志邮件'),
     description="带发邮件的loguru包装，支持全部loguru功能和邮件发送功能",
     long_description=long_description,
