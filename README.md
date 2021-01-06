@@ -2,6 +2,17 @@
 
 ## 带邮件功能的loguru
 
+## install
+- clone source
+```shell
+git clone https://github.com/425776024/eloger.git
+```
+- pip
+```shell
+pip install eloger
+```
+
+
 > Loguru with mail function
 >
 > 带邮件功能的loguru
